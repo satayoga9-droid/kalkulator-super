@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB NUU V-1🦉 - Ultimate Smart App</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    
+    <!-- API Keys -->
+    <script>
+        window.APP_CONFIG = {
+            REMOVE_BG: 'bkLBbzaXJwcar9W5WdDdQWF7',
+            OPENAI: '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'
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">WEB NUU V-1🦉</div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#tools">Tools</a>
+                <a href="#games">Games</a>
+                <a href="#ai">AI</a>
+                <a href="#fitur">Fitur</a>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <h1>WEB NUU V-1🦉</h1>
+            <p>Ultimate Smart Application dengan 20+ Fitur Premium</p>
+        </section>
+
+        <!-- Tools -->
+        <section id="tools" class="section">
+            <h2><i class="fas fa-tools"></i> Smart Tools</h2>
+            <div class="card-grid">
+                <a href="tools/kalkulator/" class="card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Kalkulator</h3>
+                    <p>Kalkulator ilmiah dengan history</p>
+                </a>
+                <a href="tools/converter/" class="card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Converter</h3>
+                    <p>Konversi panjang, berat, suhu</p>
+                </a>
+                <a href="tools/bmi/" class="card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>BMI Checker</h3>
+                    <p>Cek berat badan ideal</p>
+                </a>
+                <a href="tools/translate/" class="card">
+                    <i class="fas fa-language"></i>
+                    <h3>Translate</h3>
+                    <p>Google Translate 100+ bahasa</p>
+                </a>
+                <a href="tools/remove-bg/" class="card highlight">
+                    <i class="fas fa-cut"></i>
+                    <h3>Remove BG</h3>
+                    <p>Hapus background pake AI</p>
+                    <span class="badge-new">AKTIF</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Games -->
+        <section id="games" class="section">
+            <h2><i class="fas fa-gamepad"></i> Fun Games</h2>
+            <div class="card-grid">
+                <a href="games/math/" class="card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Math Game</h3>
+                    <p>Level + XP + Combo</p>
+                </a>
+                <a href="games/tebak-angka/" class="card">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Tebak Angka</h3>
+                    <p>1-100 dengan hint</p>
+                </a>
+                <a href="games/memory/" class="card">
+                    <i class="fas fa-images"></i>
+                    <h3>Memory Match</h3>
+                    <p>Cocokkan kartu</p>
+                </a>
+                <a href="games/susun-kata/" class="card">
+                    <i class="fas fa-font"></i>
+                    <h3>Susun Kata</h3>
+                    <p>Tebak kata acak</p>
+                </a>
+                <a href="games/tebak-bendera/" class="card">
+                    <i class="fas fa-flag"></i>
+                    <h3>Tebak Bendera</h3>
+                    <p>193 negara</p>
+                </a>
+                <a href="games/reaksi/" class="card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Uji Reaksi</h3>
+                    <p>Test kecepatan</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- AI -->
+        <section id="ai" class="section">
+            <h2><i class="fas fa-robot"></i> AI Features</h2>
+            <div class="card-grid">
+                <a href="ai/chat/" class="card">
+                    <i class="fas fa-comment-dots"></i>
+                    <h3>AI Chat</h3>
+                    <p>Chat dengan GPT-4</p>
+                </a>
+                <a href="ai/image/" class="card">
+                    <i class="fas fa-image"></i>
+                    <h3>AI Image</h3>
+                    <p>Generate gambar</p>
+                </a>
+                <a href="ai/voice/" class="card">
+                    <i class="fas fa-microphone-alt"></i>
+                    <h3>AI Voice</h3>
+                    <p>Text to speech</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Fitur Baru -->
+        <section id="fitur" class="section">
+            <h2><i class="fas fa-star"></i> Fitur Baru</h2>
+            <div class="card-grid">
+                <a href="fitur/azan/" class="card highlight">
+                    <i class="fas fa-mosque"></i>
+                    <h3>Jadwal Azan</h3>
+                    <p>Update realtime setiap hari</p>
+                    <span class="badge-new">LIVE</span>
+                </a>
+                <a href="fitur/hari-penting/" class="card highlight">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Hari Penting 2026</h3>
+                    <p>Libur nasional & event</p>
+                    <span class="badge-new">UPDATE</span>
+                </a>
+                <a href="fitur/kipin/" class="card highlight">
+                    <i class="fas fa-school"></i>
+                    <h3>Kipin School</h3>
+                    <p>5000+ buku gratis</p>
+                    <span class="badge-new">BARU</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>WEB NUU V-1🦉 - Ultimate Smart App</p>
+            <p>Version 12.0.0 FINAL | © 2026 M1YUUN</p>
+        </footer>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-info" id="nowPlaying">🎵 Lagu TikTok Viral</div>
+        <div class="music-context" id="viralContext">📌 Tren 2026</div>
+        
+        <div class="source-selector">
+            <button class="source-btn active" onclick="setMusicSource('youtube')">
+                <i class="fab fa-youtube"></i> YouTube
+            </button>
+            <button class="source-btn" onclick="setMusicSource('spotify')">
+                <i class="fab fa-spotify"></i> Spotify
+            </button>
+        </div>
+        
+        <div id="youtube-controls" style="display:flex; gap:10px; align-items:center;">
+            <button onclick="prevSong()"><i class="fas fa-backward"></i></button>
+            <button onclick="playPause()"><i class="fas fa-pause" id="playIcon"></i></button>
+            <button onclick="nextSong()"><i class="fas fa-forward"></i></button>
+            <button onclick="showPlaylist()"><i class="fas fa-list"></i></button>
+            <input type="range" id="volumeSlider" min="0" max="100" value="30" onchange="setVolume(this.value)" style="width:80px;">
+        </div>
+        
+        <div id="spotify-controls" style="display:none;">
+            <button onclick="window.open('https://open.spotify.com', '_blank')" style="background:#1DB954;">
+                <i class="fab fa-spotify"></i> Buka Spotify
+            </button>
+            <p style="font-size:0.8em; color:#94a3b8;">Login untuk akses playlist lengkap</p>
+        </div>
+    </div>
+
+    <!-- Playlist Modal -->
+    <div id="playlistModal" class="playlist-modal" style="display:none;"></div>
+
+    <!-- Hidden YouTube Player -->
+    <div id="youtube-player" style="display:none;"></div>
+
+    <script src="assets/js/sound.js"></script>
+</body>
+</html>

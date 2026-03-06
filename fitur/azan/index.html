@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Azan - WEB NUU V-1🦉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .back-btn {
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .location-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .location {
+            font-size: 1.5em;
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            color: #94a3b8;
+        }
+        
+        .prayer-grid {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .prayer-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+        
+        .prayer-item:hover {
+            background: rgba(59,130,246,0.1);
+            transform: translateX(10px);
+        }
+        
+        .prayer-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        .prayer-time {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .loading i {
+            font-size: 3em;
+            color: #3b82f6;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../../" class="back-btn"><i class="fas fa-arrow-left"></i> Kembali</a>
+            <h1>🕌 Jadwal Azan</h1>
+        </div>
+        
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner"></i>
+            <p style="margin-top: 15px;">Mendapatkan lokasi dan jadwal...</p>
+        </div>
+        
+        <div id="content" style="display:none;">
+            <div class="location-card">
+                <div class="location" id="location"></div>
+                <div class="date" id="date"></div>
+            </div>
+            
+            <div class="prayer-grid" id="prayerList"></div>
+        </div>
+    </div>
+    
+    <script>
+        async function getPrayerTimes() {
+            try {
+                // Dapatkan lokasi
+                const ipRes = await fetch('https://ipapi.co/json/');
+                const ipData = await ipRes.json();
+                
+                const city = ipData.city || ipData.region_name || 'Jakarta';
+                const country = ipData.country_name || 'Indonesia';
+                const lat = ipData.latitude || -6.2088;
+                const lon = ipData.longitude || 106.8456;
+                
+                document.getElementById('location').innerHTML = `📍 ${city}, ${country}`;
+                
+                // Dapatkan jadwal hari ini
+                const today = new Date();
+                const date = today.toISOString().split('T')[0];
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('date').innerHTML = today.toLocaleDateString('id-ID', options);
+                
+                // API jadwal sholat
+                const prayerRes = await fetch(`https://api.aladhan.com/v1/timings/${date}?latitude=${lat}&longitude=${lon}&method=11`);
+                const prayerData = await prayerRes.json();
+                
+                if(prayerData.code === 200) {
+                    const timings = prayerData.data.timings;
+                    
+                    const prayers = [
+                        { name: 'Subuh', time: timings.Fajr },
+                        { name: 'Dzuhur', time: timings.Dhuhr },
+                        { name: 'Ashar', time: timings.Asr },
+                        { name: 'Maghrib', time: timings.Maghrib },
+                        { name: 'Isya', time: timings.Isha }
+                    ];
+                    
+                    let html = '';
+                    prayers.forEach(p => {
+                        html += `
+                            <div class="prayer-item">
+                                <span class="prayer-name">${p.name}</span>
+                                <span class="prayer-time">${p.time}</span>
+                            </div>
+                        `;
+                    });
+                    
+                    document.getElementById('prayerList').innerHTML = html;
+                }
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                
+            } catch(error) {
+                document.getElementById('loading').innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="color:#ef4444;"></i>
+                    <p>Gagal memuat jadwal. Tampilkan data default.</p>
+                `;
+                
+                // Data default Jakarta
+                document.getElementById('location').innerHTML = '📍 Jakarta, Indonesia';
+                document.getElementById('date').innerHTML = new Date().toLocaleDateString('id-ID');
+                
+                const defaultPrayers = [
+                    { name: 'Subuh', time: '04:30' },
+                    { name: 'Dzuhur', time: '11:50' },
+                    { name: 'Ashar', time: '15:10' },
+                    { name: 'Maghrib', time: '17:55' },
+                    { name: 'Isya', time: '19:05' }
+                ];
+                
+                let html = '';
+                defaultPrayers.forEach(p => {
+                    html += `
+                        <div class="prayer-item">
+                            <span class="prayer-name">${p.name}</span>
+                            <span class="prayer-time">${p.time}</span>
+                        </div>
+                    `;
+                });
+                
+                document.getElementById('prayerList').innerHTML = html;
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }
+        }
+        
+        getPrayerTimes();
+    </script>
+</body>
+</html>

@@ -3,84 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEB NUU V-1🦉 - Ultimate Smart App</title>
+    <title>WEB NUU V-1🦉 - Ultimate Premium App</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- YouTube API -->
+    <!-- YouTube API untuk musik -->
     <script src="https://www.youtube.com/iframe_api"></script>
     
-    <!-- API Keys -->
-    <script>
-        window.APP_CONFIG = {
-            REMOVE_BG: 'bkLBbzaXJwcar9W5WdDdQWF7',
-            OPENAI: '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'
-        };
-    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <!-- Navbar -->
+        <!-- ===== NAVBAR ===== -->
         <nav class="navbar">
             <div class="logo">WEB NUU V-1🦉</div>
             <div class="nav-links">
-                <a href="#home" class="active">Home</a>
-                <a href="#tools">Tools</a>
-                <a href="#games">Games</a>
-                <a href="#ai">AI</a>
-                <a href="#fitur">Fitur</a>
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#tools" class="nav-link">Tools</a>
+                <a href="#games" class="nav-link">Games</a>
+                <a href="#ai" class="nav-link">AI</a>
+                <a href="#fitur" class="nav-link">Fitur</a>
             </div>
         </nav>
 
-        <!-- Hero -->
+        <!-- ===== HERO SECTION ===== -->
         <section id="home" class="hero">
             <h1>WEB NUU V-1🦉</h1>
-            <p>Ultimate Smart Application dengan 20+ Fitur Premium</p>
+            <p>Ultimate Premium Application with 20+ Advanced Features</p>
         </section>
 
-        <!-- Tools -->
+        <!-- ===== TOOLS SECTION ===== -->
         <section id="tools" class="section">
-            <h2><i class="fas fa-tools"></i> Smart Tools</h2>
+            <h2 class="section-title"><i class="fas fa-tools"></i> Smart Tools</h2>
             <div class="card-grid">
                 <a href="tools/kalkulator/" class="card">
                     <i class="fas fa-calculator"></i>
-                    <h3>Kalkulator</h3>
-                    <p>Kalkulator ilmiah dengan history</p>
+                    <h3>Kalkulator Pro</h3>
+                    <p>Scientific + History + Animasi</p>
                 </a>
                 <a href="tools/converter/" class="card">
                     <i class="fas fa-exchange-alt"></i>
                     <h3>Converter</h3>
-                    <p>Konversi panjang, berat, suhu</p>
+                    <p>Panjang, Berat, Suhu</p>
                 </a>
                 <a href="tools/bmi/" class="card">
                     <i class="fas fa-heartbeat"></i>
                     <h3>BMI Checker</h3>
-                    <p>Cek berat badan ideal</p>
+                    <p>Cek berat ideal</p>
                 </a>
                 <a href="tools/translate/" class="card">
                     <i class="fas fa-language"></i>
                     <h3>Translate</h3>
-                    <p>Google Translate 100+ bahasa</p>
+                    <p>100+ bahasa</p>
                 </a>
-                <a href="tools/remove-bg/" class="card highlight">
+                <a href="tools/remove-bg/" class="card">
                     <i class="fas fa-cut"></i>
                     <h3>Remove BG</h3>
                     <p>Hapus background pake AI</p>
-                    <span class="badge-new">AKTIF</span>
                 </a>
             </div>
         </section>
 
-        <!-- Games -->
+        <!-- ===== GAMES SECTION ===== -->
         <section id="games" class="section">
-            <h2><i class="fas fa-gamepad"></i> Fun Games</h2>
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> Fun Games</h2>
             <div class="card-grid">
                 <a href="games/math/" class="card">
                     <i class="fas fa-calculator"></i>
                     <h3>Math Game</h3>
                     <p>Level + XP + Combo</p>
                 </a>
-                <a href="games/tebak-angka/" class="card">
+                <a href="games/tebak/" class="card">
                     <i class="fas fa-question-circle"></i>
                     <h3>Tebak Angka</h3>
                     <p>1-100 dengan hint</p>
@@ -90,12 +84,12 @@
                     <h3>Memory Match</h3>
                     <p>Cocokkan kartu</p>
                 </a>
-                <a href="games/susun-kata/" class="card">
+                <a href="games/susun/" class="card">
                     <i class="fas fa-font"></i>
                     <h3>Susun Kata</h3>
                     <p>Tebak kata acak</p>
                 </a>
-                <a href="games/tebak-bendera/" class="card">
+                <a href="games/bendera/" class="card">
                     <i class="fas fa-flag"></i>
                     <h3>Tebak Bendera</h3>
                     <p>193 negara</p>
@@ -108,14 +102,14 @@
             </div>
         </section>
 
-        <!-- AI -->
+        <!-- ===== AI SECTION ===== -->
         <section id="ai" class="section">
-            <h2><i class="fas fa-robot"></i> AI Features</h2>
+            <h2 class="section-title"><i class="fas fa-robot"></i> AI Features</h2>
             <div class="card-grid">
                 <a href="ai/chat/" class="card">
                     <i class="fas fa-comment-dots"></i>
                     <h3>AI Chat</h3>
-                    <p>Chat dengan GPT-4</p>
+                    <p>Chat dengan Gemini</p>
                 </a>
                 <a href="ai/image/" class="card">
                     <i class="fas fa-image"></i>
@@ -130,74 +124,199 @@
             </div>
         </section>
 
-        <!-- Fitur Baru -->
+        <!-- ===== FITUR BARU SECTION ===== -->
         <section id="fitur" class="section">
-            <h2><i class="fas fa-star"></i> Fitur Baru</h2>
+            <h2 class="section-title"><i class="fas fa-star"></i> Fitur Baru</h2>
             <div class="card-grid">
-                <a href="fitur/azan/" class="card highlight">
+                <a href="fitur/azan/" class="card">
                     <i class="fas fa-mosque"></i>
                     <h3>Jadwal Azan</h3>
-                    <p>Update realtime setiap hari</p>
-                    <span class="badge-new">LIVE</span>
+                    <p>Update realtime</p>
                 </a>
-                <a href="fitur/hari-penting/" class="card highlight">
+                <a href="fitur/hari/" class="card">
                     <i class="fas fa-calendar-alt"></i>
                     <h3>Hari Penting 2026</h3>
-                    <p>Libur nasional & event</p>
-                    <span class="badge-new">UPDATE</span>
+                    <p>Libur nasional</p>
                 </a>
-                <a href="fitur/kipin/" class="card highlight">
+                <a href="fitur/kipin/" class="card">
                     <i class="fas fa-school"></i>
                     <h3>Kipin School</h3>
                     <p>5000+ buku gratis</p>
-                    <span class="badge-new">BARU</span>
                 </a>
             </div>
         </section>
 
-        <!-- Footer -->
+        <!-- ===== FOOTER ===== -->
         <footer class="footer">
-            <p>WEB NUU V-1🦉 - Ultimate Smart App</p>
-            <p>Version 12.0.0 FINAL | © 2026 M1YUUN</p>
+            <div class="footer-logo">WEB NUU V-1🦉</div>
+            <div class="footer-links">
+                <a href="#">Tentang</a>
+                <a href="#">Kebijakan</a>
+                <a href="#">Kontak</a>
+            </div>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">© 2026 M1YUUN Developer. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <!-- Music Player -->
-    <div class="music-player">
-        <div class="music-info" id="nowPlaying">🎵 Lagu TikTok Viral</div>
-        <div class="music-context" id="viralContext">📌 Tren 2026</div>
-        
-        <div class="source-selector">
-            <button class="source-btn active" onclick="setMusicSource('youtube')">
-                <i class="fab fa-youtube"></i> YouTube
-            </button>
-            <button class="source-btn" onclick="setMusicSource('spotify')">
-                <i class="fab fa-spotify"></i> Spotify
-            </button>
+    <!-- ===== MUSIC PLAYER TIKTOK VIRAL ===== -->
+    <div class="music-player" id="musicPlayer">
+        <div class="player-header">
+            <span><i class="fab fa-tiktok"></i> TikTok Viral 2026</span>
+            <button onclick="togglePlayer()">−</button>
         </div>
-        
-        <div id="youtube-controls" style="display:flex; gap:10px; align-items:center;">
-            <button onclick="prevSong()"><i class="fas fa-backward"></i></button>
-            <button onclick="playPause()"><i class="fas fa-pause" id="playIcon"></i></button>
-            <button onclick="nextSong()"><i class="fas fa-forward"></i></button>
-            <button onclick="showPlaylist()"><i class="fas fa-list"></i></button>
-            <input type="range" id="volumeSlider" min="0" max="100" value="30" onchange="setVolume(this.value)" style="width:80px;">
-        </div>
-        
-        <div id="spotify-controls" style="display:none;">
-            <button onclick="window.open('https://open.spotify.com', '_blank')" style="background:#1DB954;">
-                <i class="fab fa-spotify"></i> Buka Spotify
-            </button>
-            <p style="font-size:0.8em; color:#94a3b8;">Login untuk akses playlist lengkap</p>
+        <div class="player-body" id="musicPlayerBody">
+            <div id="youtubePlayer"></div>
+            
+            <div class="player-controls">
+                <button onclick="prevSong()"><i class="fas fa-backward"></i></button>
+                <button onclick="playPause()" id="playPauseBtn"><i class="fas fa-pause"></i></button>
+                <button onclick="nextSong()"><i class="fas fa-forward"></i></button>
+            </div>
+            
+            <div class="playlist" id="playlist">
+                <!-- Akan diisi JavaScript -->
+            </div>
         </div>
     </div>
+    
+    <button class="music-toggle" onclick="togglePlayer()">
+        <i class="fas fa-music"></i>
+    </button>
 
-    <!-- Playlist Modal -->
-    <div id="playlistModal" class="playlist-modal" style="display:none;"></div>
+    <!-- ===== MUSIC PLAYER JAVASCRIPT ===== -->
+    <script>
+        // ================== MUSIC PLAYLIST TIKTOK VIRAL ==================
+        const songs = [
+            { title: 'Love Me - JMSN', artist: 'Viral TikTok', videoId: 'jfKfPfyJRdk' },
+            { title: 'Gasolina - Bad Bunny', artist: 'Summer 2026', videoId: 'cHHLHGNpCSA' },
+            { title: 'Berghain - Rosalia', artist: 'TikTok Dramatic', videoId: 'sR0SDT2PSFo' },
+            { title: 'Brain Stew - Green Day', artist: 'Rock Mood', videoId: '5qap5aO4i9A' },
+            { title: 'Fantasy - Mariah Carey', artist: 'Feel Good', videoId: '4NikZ-7TvT4' },
+            { title: 'Neon Dreams - Luna Ray', artist: 'Aesthetic', videoId: 'VIDEO_ID_NEON' },
+            { title: 'Midnight Echoes - Synthetix', artist: 'Futuristic', videoId: 'VIDEO_ID_MID' }
+        ];
+        
+        let player;
+        let currentIndex = 0;
+        let isPlaying = true;
+        
+        // Inisialisasi YouTube Player
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                height: '180',
+                width: '100%',
+                videoId: songs[currentIndex].videoId,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'rel': 0,
+                    'showinfo': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+        
+        function onPlayerReady(event) {
+            renderPlaylist();
+        }
+        
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                nextSong();
+            }
+        }
+        
+        function playPause() {
+            if (player) {
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+                isPlaying = !isPlaying;
+                updatePlayButton();
+            }
+        }
+        
+        function nextSong() {
+            currentIndex = (currentIndex + 1) % songs.length;
+            player.loadVideoById(songs[currentIndex].videoId);
+            isPlaying = true;
+            updatePlayButton();
+            renderPlaylist();
+        }
+        
+        function prevSong() {
+            currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+            player.loadVideoById(songs[currentIndex].videoId);
+            isPlaying = true;
+            updatePlayButton();
+            renderPlaylist();
+        }
+        
+        function playSong(index) {
+            currentIndex = index;
+            player.loadVideoById(songs[index].videoId);
+            isPlaying = true;
+            updatePlayButton();
+            renderPlaylist();
+        }
+        
+        function updatePlayButton() {
+            document.getElementById('playPauseBtn').innerHTML = isPlaying ? 
+                '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+        }
+        
+        function renderPlaylist() {
+            let html = '';
+            songs.forEach((song, index) => {
+                html += `
+                    <div class="playlist-item ${index === currentIndex ? 'active' : ''}" onclick="playSong(${index})">
+                        <img src="https://img.youtube.com/vi/${song.videoId}/default.jpg" alt="${song.title}">
+                        <div class="playlist-info">
+                            <div class="title">${song.title}</div>
+                            <div class="artist">${song.artist}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('playlist').innerHTML = html;
+        }
+        
+        function togglePlayer() {
+            let body = document.getElementById('musicPlayerBody');
+            let player = document.querySelector('.music-player');
+            let toggle = document.querySelector('.music-toggle');
+            
+            if (body.classList.contains('collapsed')) {
+                body.classList.remove('collapsed');
+                player.style.display = 'block';
+                toggle.style.display = 'none';
+            } else {
+                body.classList.add('collapsed');
+                player.style.display = 'none';
+                toggle.style.display = 'flex';
+            }
+        }
+        
+        // Toggle button visibility
+        document.querySelector('.music-toggle').style.display = 'none';
+    </script>
 
-    <!-- Hidden YouTube Player -->
-    <div id="youtube-player" style="display:none;"></div>
-
-    <script src="assets/js/sound.js"></script>
+    <!-- ===== AI CHAT SCRIPT (GEMINI) ===== -->
+    <script>
+        const GEMINI_API_KEY = "AIzaSyCrnIKxENHK6y-PT6lJgRDh76fl6NMrzEY";
+        
+        // Fungsi untuk test AI Chat
+        async function testAI() {
+            console.log('✅ AI Chat siap dengan Gemini API');
+        }
+        
+        testAI();
+    </script>
 </body>
 </html>

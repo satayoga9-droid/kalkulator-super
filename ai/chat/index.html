@@ -3,137 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUPER AI MAX - WEB NUU V-1🦉</title>
+    <title>AI Chat - WEB NUU V-1🦉</title>
     <style>
-        body {
-            margin: 0;
-            font-family: system-ui;
-            background: #020617;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-        
-        header {
-            background: #0f172a;
-            padding: 15px;
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-        }
-        
-        #chat {
-            flex: 1;
-            overflow: auto;
-            padding: 20px;
-        }
-        
-        .msg {
-            padding: 12px;
-            border-radius: 12px;
-            margin: 10px 0;
-            max-width: 80%;
-            animation: fade .3s;
-        }
-        
-        .user {
-            background: #2563eb;
-            margin-left: auto;
-        }
-        
-        .ai {
-            background: #1e293b;
-        }
-        
-        @keyframes fade {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; }
-        }
-        
-        #inputArea {
-            display: flex;
-            gap: 5px;
-            padding: 10px;
-            background: #020617;
-        }
-        
-        input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-        }
-        
-        button {
-            border: none;
-            padding: 10px 14px;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            cursor: pointer;
-        }
-        
-        button:hover {
-            opacity: .8;
-        }
-        
-        .tools {
-            display: flex;
-            gap: 6px;
-            padding: 10px;
-            background: #020617;
-            overflow: auto;
-        }
-        
-        .tools button {
-            background: #1e293b;
-        }
-        
-        .back {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-        }
-        
-        .back a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 15px;
-            background: #2563eb;
-            border-radius: 50px;
-            font-size: 14px;
-        }
+        body { margin:0; background:#0f172a; color:white; font-family:system-ui; display:flex; flex-direction:column; height:100vh; }
+        .header { background:#1e293b; padding:15px; text-align:center; font-size:22px; font-weight:bold; border-bottom:1px solid #334155; }
+        .chat { flex:1; overflow-y:auto; padding:20px; }
+        .msg { padding:12px; border-radius:18px; margin:8px 0; max-width:80%; word-wrap:break-word; animation:fade 0.3s; }
+        .user { background:#2563eb; margin-left:auto; }
+        .ai { background:#334155; margin-right:auto; }
+        .input-area { display:flex; gap:5px; padding:10px; background:#0f172a; border-top:1px solid #334155; }
+        input { flex:1; padding:15px; border-radius:25px; border:none; background:#1e293b; color:white; font-size:16px; }
+        button { padding:10px 20px; border-radius:25px; border:none; background:#2563eb; color:white; cursor:pointer; }
+        .tools { display:flex; gap:5px; padding:10px; background:#0f172a; overflow-x:auto; }
+        .tools button { background:#334155; padding:10px 15px; }
+        .back { position:absolute; top:15px; left:15px; }
+        .back a { color:white; text-decoration:none; padding:8px 15px; background:#2563eb; border-radius:20px; font-size:14px; }
+        @keyframes fade { from { opacity:0; transform:translateY(10px); } to { opacity:1; } }
     </style>
 </head>
 <body>
-    <div class="back">
-        <a href="../../">← Kembali</a>
-    </div>
-    
-    <header>🚀 SUPER AI MAX</header>
+    <div class="back"><a href="../../">← Kembali</a></div>
+    <div class="header">🤖 AI Chat (Gemini)</div>
     
     <div class="tools">
         <button onclick="voice()">🎤 Voice</button>
         <button onclick="upload()">🖼 Upload</button>
         <button onclick="camera()">📷 Camera</button>
-        <button onclick="generateImage()">🎨 Image AI</button>
-        <button onclick="videoPrompt()">🎬 Video Prompt</button>
     </div>
     
-    <div id="chat"></div>
+    <div class="chat" id="chat"></div>
     
-    <div id="inputArea">
+    <div class="input-area">
         <input id="text" placeholder="Tanya apa saja...">
         <button onclick="send()">➤</button>
     </div>
-    
+
     <script>
-        // ================== API KEYS ==================
-        const OPENAI_API_KEY = "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";
-        const GROQ_API_KEY = "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";
-        
-        // ================== VARIABLES ==================
+        const API_KEY = "AIzaSyCrnIKxENHK6y-PT6lJgRDh76fl6NMrzEY";
         const chat = document.getElementById("chat");
         
         function add(text, type) {
@@ -144,166 +50,64 @@
             chat.scrollTop = chat.scrollHeight;
         }
         
-        // ================== CHAT GPT ==================
         async function send() {
             let text = document.getElementById("text").value;
             if (!text) return;
             
             add(text, "user");
             document.getElementById("text").value = "";
-            add("AI sedang berpikir...", "ai");
+            add("⏳", "ai");
             
             try {
-                let res = await fetch("https://api.openai.com/v1/chat/completions", {
+                let res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${API_KEY}`, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + OPENAI_API_KEY
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-3.5-turbo",
-                        messages: [{ role: "user", content: text }]
-                    })
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: text }] }] })
                 });
                 
                 let data = await res.json();
                 document.querySelector(".ai:last-child").remove();
                 
-                if (data.choices && data.choices[0]) {
-                    let reply = data.choices[0].message.content;
-                    add(reply, "ai");
-                    speak(reply);
+                if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+                    add(data.candidates[0].content.parts[0].text, "ai");
                 } else {
                     add("❌ Error: " + (data.error?.message || "Gagal"), "ai");
                 }
-                
             } catch (e) {
                 document.querySelector(".ai:last-child").remove();
                 add("❌ Error: " + e.message, "ai");
+                add("⚠️ Fallback: AI offline. Coba lagi nanti.", "ai");
             }
         }
         
-        // ================== TEXT TO SPEECH ==================
-        function speak(text) {
-            let speech = new SpeechSynthesisUtterance(text);
-            speech.lang = "id-ID";
-            speechSynthesis.speak(speech);
-        }
-        
-        // ================== VOICE RECOGNITION ==================
         function voice() {
             let rec = new webkitSpeechRecognition();
             rec.lang = "id-ID";
-            
-            rec.onresult = (e) => {
-                let text = e.results[0][0].transcript;
-                document.getElementById("text").value = text;
+            rec.onresult = e => {
+                document.getElementById("text").value = e.results[0][0].transcript;
                 send();
             };
-            
             rec.start();
         }
         
-        // ================== UPLOAD GAMBAR ==================
         function upload() {
             let input = document.createElement("input");
             input.type = "file";
             input.accept = "image/*";
-            
-            input.onchange = () => {
-                let file = input.files[0];
-                add("📷 Upload: " + file.name, "user");
-                
-                // Simulasi proses
-                add("🔍 Menganalisis gambar...", "ai");
-                setTimeout(() => {
-                    document.querySelector(".ai:last-child").remove();
-                    add("Gambar diterima. Untuk analisis gambar, perlu model vision yang support.", "ai");
-                }, 1500);
-            };
-            
+            input.onchange = () => add("📷 Upload: " + input.files[0].name, "user");
             input.click();
         }
         
-        // ================== CAMERA ==================
         function camera() {
-            add("📷 Mengaktifkan kamera...", "user");
-            
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(stream => {
                     add("✅ Kamera aktif", "ai");
-                    
-                    // Tampilkan preview
-                    let video = document.createElement("video");
-                    video.srcObject = stream;
-                    video.autoplay = true;
-                    video.style.width = "100%";
-                    video.style.borderRadius = "10px";
-                    
-                    let div = document.createElement("div");
-                    div.className = "msg ai";
-                    div.innerHTML = "<h4>Preview Kamera:</h4>";
-                    div.appendChild(video);
-                    chat.appendChild(div);
+                    stream.getTracks().forEach(t => t.stop());
                 })
-                .catch(err => {
-                    add("❌ Gagal akses kamera: " + err.message, "ai");
-                });
+                .catch(() => add("❌ Izin kamera ditolak. Klik untuk meminta ulang.", "ai"));
         }
         
-        // ================== GENERATE IMAGE ==================
-        async function generateImage() {
-            let prompt = prompt("Deskripsi gambar yang ingin dibuat:");
-            if (!prompt) return;
-            
-            add("🎨 Membuat gambar: " + prompt, "user");
-            add("AI sedang membuat gambar...", "ai");
-            
-            try {
-                let res = await fetch("https://api.openai.com/v1/images/generations", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + OPENAI_API_KEY
-                    },
-                    body: JSON.stringify({
-                        model: "dall-e-2",
-                        prompt: prompt,
-                        n: 1,
-                        size: "512x512"
-                    })
-                });
-                
-                let data = await res.json();
-                document.querySelector(".ai:last-child").remove();
-                
-                if (data.data && data.data[0]) {
-                    let imgUrl = data.data[0].url;
-                    let div = document.createElement("div");
-                    div.className = "msg ai";
-                    div.innerHTML = "<img src='" + imgUrl + "' style='width:100%;border-radius:10px'>";
-                    chat.appendChild(div);
-                } else {
-                    add("❌ Error: " + (data.error?.message || "Gagal generate"), "ai");
-                }
-                
-            } catch (e) {
-                document.querySelector(".ai:last-child").remove();
-                add("❌ Error: " + e.message, "ai");
-            }
-        }
-        
-        // ================== VIDEO PROMPT ==================
-        function videoPrompt() {
-            let text = prompt("Deskripsi video yang ingin dibuat:");
-            if (!text) return;
-            
-            add("🎬 Prompt video: " + text, "user");
-            add("Untuk generate video, diperlukan model seperti OpenAI Sora atau RunwayML.", "ai");
-        }
-        
-        // ================== WELCOME MESSAGE ==================
-        add("👋 Halo! Saya SUPER AI MAX. Ada yang bisa dibantu?", "ai");
+        add("👋 Halo! Ada yang bisa dibantu?", "ai");
     </script>
 </body>
 </html>

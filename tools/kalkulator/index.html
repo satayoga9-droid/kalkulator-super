@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Pro - WEB NUU V-1🦉</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+        body { background:linear-gradient(135deg,#0f172a,#1e293b); color:white; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
+        .calc { background:#1e293b; border-radius:30px; padding:25px; width:400px; box-shadow:0 20px 40px rgba(0,0,0,0.5); }
+        .history { background:#0f172a; border-radius:15px; padding:15px; margin-bottom:15px; max-height:150px; overflow-y:auto; font-size:0.9em; color:#94a3b8; }
+        .display { background:#0f172a; border-radius:15px; padding:20px; margin-bottom:15px; text-align:right; font-size:2.5em; min-height:80px; }
+        .buttons { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+        button { padding:20px; border:none; border-radius:15px; background:#334155; color:white; font-size:1.2em; cursor:pointer; transition:all 0.2s; }
+        button:hover { background:#3b82f6; transform:scale(0.95); }
+        .operator { background:#3b82f6; }
+        .clear-history { background:#ef4444; margin-top:10px; width:100%; padding:15px; }
+        .back a { color:white; text-decoration:none; padding:10px 20px; background:#3b82f6; border-radius:50px; position:absolute; top:20px; left:20px; }
+    </style>
+</head>
+<body>
+    <div class="back"><a href="../../">← Kembali</a></div>
+    
+    <div class="calc">
+        <div class="history" id="history"></div>
+        <div class="display" id="display">0</div>
+        
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="append('/')">/</button>
+            <button onclick="append('*')">×</button>
+            <button onclick="append('-')">−</button>
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button class="operator" onclick="append('+')">+</button>
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button class="operator" onclick="calculate()">=</button>
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button onclick="del()">⌫</button>
+        </div>
+        
+        <button class="clear-history" onclick="clearHistory()">🗑️ Hapus History</button>
+    </div>
+
+    <script>
+        let history = JSON.parse(localStorage.getItem('calcHistory')) || [];
+        updateHistory();
+        
+        function append(val) {
+            let d = document.getElementById('display');
+            d.innerText = d.innerText === '0' && val !== '.' ? val : d.innerText + val;
+        }
+        
+        function clearDisplay() {
+            document.getElementById('display').innerText = '0';
+        }
+        
+        function del() {
+            let d = document.getElementById('display');
+            d.innerText = d.innerText.slice(0, -1) || '0';
+        }
+        
+        function calculate() {
+            try {
+                let expr = document.getElementById('display').innerText.replace(/×/g, '*');
+                let result = eval(expr);
+                
+                history.unshift(document.getElementById('display').innerText + ' = ' + result);
+                if (history.length > 10) history.pop();
+                
+                localStorage.setItem('calcHistory', JSON.stringify(history));
+                updateHistory();
+                
+                document.getElementById('display').innerText = result;
+            } catch {
+                document.getElementById('display').innerText = 'Error';
+            }
+        }
+        
+        function updateHistory() {
+            let html = '';
+            history.forEach(h => html += '<div>' + h + '</div>');
+            document.getElementById('history').innerHTML = html || '<div>Belum ada history</div>';
+        }
+        
+        function clearHistory() {
+            history = [];
+            localStorage.removeItem('calcHistory');
+            updateHistory();
+        }
+    </script>
+</body>
+</html>

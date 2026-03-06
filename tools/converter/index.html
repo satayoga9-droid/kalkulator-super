@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter - WEB NUU V-1🦉</title>
+    <style>
+        body { background: linear-gradient(135deg, #0f172a, #1e293b); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; }
+        h1 { color: #3b82f6; text-align: center; margin-bottom: 30px; }
+        .tab { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab button { flex: 1; padding: 10px; border: none; border-radius: 50px; background: rgba(255,255,255,0.1); color: white; cursor: pointer; }
+        .tab button.active { background: #3b82f6; }
+        .converter { display: none; }
+        .converter.active { display: block; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; background: rgba(255,255,255,0.1); color: white; }
+        button { width: 100%; padding: 15px; background: #3b82f6; color: white; border: none; border-radius: 10px; cursor: pointer; }
+        .result { margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; text-align: center; }
+        .back { margin-bottom: 20px; }
+        .back a { color: white; text-decoration: none; padding: 10px 20px; background: #3b82f6; border-radius: 50px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="back"><a href="../../">← Kembali</a></div>
+    <div class="container">
+        <h1>🔄 Converter</h1>
+        
+        <div class="tab">
+            <button class="active" onclick="showTab('panjang')">Panjang</button>
+            <button onclick="showTab('berat')">Berat</button>
+            <button onclick="showTab('suhu')">Suhu</button>
+        </div>
+        
+        <!-- Panjang -->
+        <div id="panjang" class="converter active">
+            <input type="number" id="panjangNilai" value="1">
+            <select id="panjangDari">
+                <option value="km">Kilometer</option>
+                <option value="m" selected>Meter</option>
+                <option value="cm">Centimeter</option>
+                <option value="mm">Milimeter</option>
+            </select>
+            <span style="display:block; text-align:center;">⬇️</span>
+            <select id="panjangKe">
+                <option value="m">Meter</option>
+                <option value="km">Kilometer</option>
+                <option value="cm">Centimeter</option>
+                <option value="mm">Milimeter</option>
+            </select>
+            <button onclick="konversiPanjang()">Konversi</button>
+            <div class="result" id="panjangResult"></div>
+        </div>
+        
+        <!-- Berat -->
+        <div id="berat" class="converter">
+            <input type="number" id="beratNilai" value="1">
+            <select id="beratDari">
+                <option value="kg">Kilogram</option>
+                <option value="g" selected>Gram</option>
+                <option value="mg">Miligram</option>
+                <option value="lb">Pound</option>
+            </select>
+            <span>⬇️</span>
+            <select id="beratKe">
+                <option value="g">Gram</option>
+                <option value="kg">Kilogram</option>
+                <option value="mg">Miligram</option>
+                <option value="lb">Pound</option>
+            </select>
+            <button onclick="konversiBerat()">Konversi</button>
+            <div class="result" id="beratResult"></div>
+        </div>
+        
+        <!-- Suhu -->
+        <div id="suhu" class="converter">
+            <input type="number" id="suhuNilai" value="0">
+            <select id="suhuDari">
+                <option value="c" selected>Celsius</option>
+                <option value="f">Fahrenheit</option>
+                <option value="k">Kelvin</option>
+            </select>
+            <span>⬇️</span>
+            <select id="suhuKe">
+                <option value="f">Fahrenheit</option>
+                <option value="c">Celsius</option>
+                <option value="k">Kelvin</option>
+            </select>
+            <button onclick="konversiSuhu()">Konversi</button>
+            <div class="result" id="suhuResult"></div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tab) {
+            document.querySelectorAll('.tab button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.converter').forEach(con => con.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tab).classList.add('active');
+        }
+        
+        function konversiPanjang() {
+            let n = parseFloat(document.getElementById('panjangNilai').value) || 0;
+            let dari = document.getElementById('panjangDari').value;
+            let ke = document.getElementById('panjangKe').value;
+            let konv = { km: 1000, m: 1, cm: 0.01, mm: 0.001 };
+            let hasil = n * konv[dari] / konv[ke];
+            document.getElementById('panjangResult').innerHTML = `${n} ${dari} = ${hasil} ${ke}`;
+        }
+        
+        function konversiBerat() {
+            let n = parseFloat(document.getElementById('beratNilai').value) || 0;
+            let dari = document.getElementById('beratDari').value;
+            let ke = document.getElementById('beratKe').value;
+            let konv = { kg: 1000, g: 1, mg: 0.001, lb: 453.592 };
+            let hasil = n * konv[dari] / konv[ke];
+            document.getElementById('beratResult').innerHTML = `${n} ${dari} = ${hasil.toFixed(2)} ${ke}`;
+        }
+        
+        function konversiSuhu() {
+            let n = parseFloat(document.getElementById('suhuNilai').value) || 0;
+            let dari = document.getElementById('suhuDari').value;
+            let ke = document.getElementById('suhuKe').value;
+            let celsius = dari === 'c' ? n : dari === 'f' ? (n-32)*5/9 : n-273.15;
+            let hasil = ke === 'c' ? celsius : ke === 'f' ? celsius*9/5+32 : celsius+273.15;
+            document.getElementById('suhuResult').innerHTML = `${n}°${dari.toUpperCase()} = ${hasil.toFixed(2)}°${ke.toUpperCase()}`;
+        }
+    </script>
+</body>
+</html>

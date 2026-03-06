@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Tebak Bendera Pro</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0f172a,#020617);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.game{
+width:90%;
+max-width:420px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+text-align:center;
+}
+
+h1{
+margin:0 0 10px 0;
+}
+
+.flag{
+margin:20px 0;
+}
+
+.flag img{
+width:200px;
+border-radius:10px;
+box-shadow:0 0 10px black;
+}
+
+.answers{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:15px;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.correct{
+background:#22c55e!important;
+}
+
+.wrong{
+background:#ef4444!important;
+}
+
+.info{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+font-size:15px;
+}
+
+.timer-bar{
+height:8px;
+background:#334155;
+border-radius:10px;
+margin-top:10px;
+overflow:hidden;
+}
+
+.timer-fill{
+height:100%;
+width:100%;
+background:#22c55e;
+transition:1s linear;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+<h1>🌍 Tebak Bendera</h1>
+
+<div class="flag">
+<img id="flag">
+</div>
+
+<div class="answers" id="answers"></div>
+
+<div class="info">
+<div>Score: <span id="score">0</span></div>
+<div>Highscore: <span id="high">0</span></div>
+</div>
+
+<div class="timer-bar">
+<div class="timer-fill" id="timer"></div>
+</div>
+
+</div>
+
+<script>
+
+const countries=[
+{name:"Indonesia",code:"id"},
+{name:"Jepang",code:"jp"},
+{name:"Korea Selatan",code:"kr"},
+{name:"Amerika Serikat",code:"us"},
+{name:"Kanada",code:"ca"},
+{name:"Brasil",code:"br"},
+{name:"Argentina",code:"ar"},
+{name:"Prancis",code:"fr"},
+{name:"Jerman",code:"de"},
+{name:"Italia",code:"it"},
+{name:"Spanyol",code:"es"},
+{name:"Portugal",code:"pt"},
+{name:"Belanda",code:"nl"},
+{name:"Belgia",code:"be"},
+{name:"Swedia",code:"se"},
+{name:"Norwegia",code:"no"},
+{name:"Finlandia",code:"fi"},
+{name:"Denmark",code:"dk"},
+{name:"Inggris",code:"gb"},
+{name:"India",code:"in"},
+{name:"Pakistan",code:"pk"},
+{name:"Turki",code:"tr"},
+{name:"Arab Saudi",code:"sa"},
+{name:"Qatar",code:"qa"},
+{name:"Thailand",code:"th"},
+{name:"Vietnam",code:"vn"},
+{name:"Filipina",code:"ph"},
+{name:"Malaysia",code:"my"},
+{name:"Singapura",code:"sg"},
+{name:"Australia",code:"au"},
+{name:"Selandia Baru",code:"nz"},
+{name:"Meksiko",code:"mx"},
+{name:"Chile",code:"cl"},
+{name:"Mesir",code:"eg"},
+{name:"Afrika Selatan",code:"za"}
+]
+
+let score=0
+let high=localStorage.getItem("flagHigh")||0
+document.getElementById("high").innerText=high
+
+let current
+let timer
+let time=10
+
+function shuffle(a){
+return a.sort(()=>Math.random()-0.5)
+}
+
+function next(){
+
+clearInterval(timer)
+
+time=10
+updateTimer()
+
+const options=shuffle([...countries]).slice(0,4)
+current=options[Math.floor(Math.random()*4)]
+
+document.getElementById("flag").src=
+"https://flagcdn.com/w320/"+current.code+".png"
+
+const answers=document.getElementById("answers")
+answers.innerHTML=""
+
+options.forEach(o=>{
+
+const btn=document.createElement("button")
+btn.innerText=o.name
+
+btn.onclick=()=>check(btn,o)
+
+answers.appendChild(btn)
+
+})
+
+timer=setInterval(()=>{
+
+time--
+updateTimer()
+
+if(time<=0){
+clearInterval(timer)
+next()
+}
+
+},1000)
+
+}
+
+function updateTimer(){
+document.getElementById("timer").style.width=(time*10)+"%"
+}
+
+function check(btn,o){
+
+clearInterval(timer)
+
+if(o.name===current.name){
+
+btn.classList.add("correct")
+score++
+document.getElementById("score").innerText=score
+
+if(score>high){
+high=score
+localStorage.setItem("flagHigh",high)
+document.getElementById("high").innerText=high
+}
+
+}else{
+
+btn.classList.add("wrong")
+
+}
+
+setTimeout(next,1000)
+
+}
+
+next()
+
+</script>
+
+</body>
+</html>

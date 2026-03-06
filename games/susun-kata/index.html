@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Susun Kata AI - WEB NUU V-1🦉</title>
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #3b82f6;
+        }
+        
+        .scramble {
+            font-size: 32px;
+            letter-spacing: 6px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .category {
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #2563eb;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        
+        .stats {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .back {
+            margin-bottom: 20px;
+        }
+        
+        .back a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #3b82f6;
+            border-radius: 50px;
+            display: inline-block;
+        }
+        
+        .back a:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="back">
+        <a href="../../">← Kembali</a>
+    </div>
+    
+    <div class="container">
+        <h1>🔤 Susun Kata AI</h1>
+        
+        <div class="category" id="category">Mengambil kata dari AI...</div>
+        
+        <div class="scramble" id="scramble">...</div>
+        
+        <input type="text" id="answer" placeholder="Tulis kata yang benar">
+        
+        <button onclick="cek()">Cek Jawaban</button>
+        <button onclick="nextWord()">Kata Baru</button>
+        
+        <div class="stats">
+            Score: <span id="score">0</span> |
+            Timer: <span id="timer">30</span>s
+        </div>
+        
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script>
+        // GROQ API KEY - SUDAH TERISI
+        const API_KEY = "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";
+        
+        let word = "";
+        let scramble = "";
+        let score = 0;
+        let time = 30;
+        let timer;
+        
+        function shuffle(w) {
+            return w.split("").sort(() => Math.random() - 0.5).join("");
+        }
+        
+        async function getAIWord() {
+            try {
+                let res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + API_KEY
+                    },
+                    body: JSON.stringify({
+                        model: "llama3-70b-8192",
+                        messages: [
+                            {
+                                role: "user",
+                                content: "berikan satu kata bahasa indonesia acak untuk game susun kata tanpa kalimat lain"
+                            }
+                        ]
+                    })
+                });
+                
+                let data = await res.json();
+                
+                if (data.choices && data.choices[0]) {
+                    let aiWord = data.choices[0].message.content.trim().toLowerCase();
+                    return aiWord.replace(/[^a-zA-Z]/g, "");
+                } else {
+                    console.log("Error response:", data);
+                    return "komputer";
+                }
+                
+            } catch(e) {
+                console.log("Error fetching from Groq:", e);
+                return "komputer";
+            }
+        }
+        
+        function startTimer() {
+            clearInterval(timer);
+            time = 30;
+            document.getElementById("timer").innerText = time;
+            
+            timer = setInterval(() => {
+                time--;
+                document.getElementById("timer").innerText = time;
+                
+                if (time <= 0) {
+                    document.getElementById("result").innerHTML = "⏰ Waktu habis! Jawaban: " + word;
+                    nextWord();
+                }
+            }, 1000);
+        }
+        
+        async function nextWord() {
+            document.getElementById("scramble").innerText = "...";
+            document.getElementById("category").innerText = "Mengambil kata dari AI...";
+            
+            word = await getAIWord();
+            scramble = shuffle(word);
+            
+            document.getElementById("scramble").innerText = scramble;
+            document.getElementById("category").innerText = `Kata AI: ${word.length} huruf`;
+            document.getElementById("answer").value = "";
+            document.getElementById("result").innerHTML = "";
+            
+            startTimer();
+        }
+        
+        function cek() {
+            let ans = document.getElementById("answer").value.toLowerCase();
+            
+            if (ans === word) {
+                score++;
+                document.getElementById("score").innerText = score;
+                document.getElementById("result").innerHTML = "✅ Benar!";
+                nextWord();
+            } else {
+                document.getElementById("result").innerHTML = "❌ Salah!";
+            }
+        }
+        
+        // Mulai game saat halaman dimuat
+        nextWord();
+    </script>
+</body>
+</html>

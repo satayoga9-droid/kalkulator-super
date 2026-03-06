@@ -5,131 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kipin School - WEB NUU V-1🦉</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .back-btn {
-            background: #3b82f6;
-            color: white;
-            text-decoration: none;
-            padding: 10px 25px;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .stat-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #3b82f6;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #94a3b8;
-        }
-        
-        .category {
-            margin-bottom: 40px;
-        }
-        
-        .category h2 {
-            color: #3b82f6;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-        
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .book-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
-        }
-        
-        .book-card:hover {
-            transform: translateY(-5px);
-            background: rgba(59,130,246,0.1);
-        }
-        
-        .book-cover {
-            font-size: 3em;
-            margin-bottom: 15px;
-            color: #3b82f6;
-        }
-        
-        .book-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .book-author {
-            color: #94a3b8;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        
-        .book-grade {
-            background: rgba(59,130,246,0.2);
-            color: #3b82f6;
-            padding: 5px 10px;
-            border-radius: 50px;
-            font-size: 0.8em;
-            display: inline-block;
-        }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+        body { background:linear-gradient(135deg,#0f172a,#1e293b); color:white; min-height:100vh; padding:20px; }
+        .container { max-width:1200px; margin:0 auto; }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; }
+        .back-btn { background:#3b82f6; color:white; text-decoration:none; padding:10px 25px; border-radius:50px; }
+        h1 { font-size:2.5em; background:linear-gradient(135deg,#3b82f6,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:40px; }
+        .stat-card { background:rgba(255,255,255,0.05); padding:25px; border-radius:20px; text-align:center; border:1px solid rgba(255,255,255,0.1); }
+        .stat-number { font-size:2.5em; font-weight:bold; color:#3b82f6; }
+        .category { margin-bottom:40px; }
+        .category h2 { color:#3b82f6; margin-bottom:20px; }
+        .book-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:20px; }
+        .book-card { background:rgba(255,255,255,0.05); padding:20px; border-radius:15px; text-align:center; border:1px solid rgba(255,255,255,0.1); transition:0.3s; }
+        .book-card:hover { transform:translateY(-5px); background:rgba(59,130,246,0.1); }
+        .book-cover { font-size:3em; margin-bottom:15px; color:#3b82f6; }
+        .book-title { font-weight:bold; margin-bottom:5px; }
+        .book-author { color:#94a3b8; font-size:0.9em; margin-bottom:10px; }
+        .book-grade { background:rgba(59,130,246,0.2); color:#3b82f6; padding:5px 10px; border-radius:50px; font-size:0.8em; display:inline-block; }
     </style>
 </head>
 <body>
@@ -141,102 +34,42 @@
         
         <!-- Stats -->
         <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number">5000+</div>
-                <div class="stat-label">Buku Sekolah</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">2000+</div>
-                <div class="stat-label">Video</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">50.000+</div>
-                <div class="stat-label">Latihan Soal</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Komik Literasi</div>
+            <div class="stat-card"><div class="stat-number">5000+</div><div>Buku Sekolah</div></div>
+            <div class="stat-card"><div class="stat-number">2000+</div><div>Video</div></div>
+            <div class="stat-card"><div class="stat-number">50.000+</div><div>Latihan Soal</div></div>
+            <div class="stat-card"><div class="stat-number">100+</div><div>Komik</div></div>
+        </div>
+        
+        <!-- SD -->
+        <div class="category">
+            <h2>📚 SD/MI Kelas 1-6</h2>
+            <div class="book-grid">
+                <div class="book-card"><div class="book-cover">📘</div><div class="book-title">Matematika 1</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 1</div></div>
+                <div class="book-card"><div class="book-cover">📕</div><div class="book-title">Bahasa Indonesia 2</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 2</div></div>
+                <div class="book-card"><div class="book-cover">📗</div><div class="book-title">IPA 3</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 3</div></div>
+                <div class="book-card"><div class="book-cover">📙</div><div class="book-title">IPS 4</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 4</div></div>
+                <div class="book-card"><div class="book-cover">📘</div><div class="book-title">PKN 5</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 5</div></div>
+                <div class="book-card"><div class="book-cover">📕</div><div class="book-title">Matematika 6</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 6</div></div>
             </div>
         </div>
         
-        <!-- SD Category -->
+        <!-- SMP -->
         <div class="category">
-            <h2>🏫 SD/MI (Kelas 1-6)</h2>
+            <h2>📚 SMP/MTs Kelas 7-9</h2>
             <div class="book-grid">
-                <div class="book-card">
-                    <div class="book-cover">📘</div>
-                    <div class="book-title">Matematika SD 1</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 1</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-cover">📕</div>
-                    <div class="book-title">Bahasa Indonesia 2</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 2</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-cover">📗</div>
-                    <div class="book-title">IPA SD 3</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 3</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-cover">📙</div>
-                    <div class="book-title">IPS SD 4</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 4</div>
-                </div>
+                <div class="book-card"><div class="book-cover">📘</div><div class="book-title">Matematika 7</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 7</div></div>
+                <div class="book-card"><div class="book-cover">📕</div><div class="book-title">IPA 8</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 8</div></div>
+                <div class="book-card"><div class="book-cover">📗</div><div class="book-title">Bahasa Inggris 9</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 9</div></div>
             </div>
         </div>
         
-        <!-- SMP Category -->
+        <!-- SMA -->
         <div class="category">
-            <h2>🏫 SMP/MTs (Kelas 7-9)</h2>
+            <h2>📚 SMA/SMK Kelas 10-12</h2>
             <div class="book-grid">
-                <div class="book-card">
-                    <div class="book-cover">📘</div>
-                    <div class="book-title">Matematika SMP 7</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 7</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-cover">📕</div>
-                    <div class="book-title">Bahasa Inggris 8</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 8</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-cover">📗</div>
-                    <div class="book-title">IPA SMP 9</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 9</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SMA Category -->
-        <div class="category">
-            <h2>🏫 SMA/SMK (Kelas 10-12)</h2>
-            <div class="book-grid">
-                <div class="book-card">
-                    <div class="book-cover">📘</div>
-                    <div class="book-title">Matematika Wajib 10</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 10</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-cover">📕</div>
-                    <div class="book-title">Fisika SMA 11</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 11</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-cover">📗</div>
-                    <div class="book-title">Kimia SMA 12</div>
-                    <div class="book-author">Kemendikbud</div>
-                    <div class="book-grade">Kelas 12</div>
-                </div>
+                <div class="book-card"><div class="book-cover">📘</div><div class="book-title">Matematika Wajib 10</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 10</div></div>
+                <div class="book-card"><div class="book-cover">📕</div><div class="book-title">Fisika 11</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 11</div></div>
+                <div class="book-card"><div class="book-cover">📗</div><div class="book-title">Kimia 12</div><div class="book-author">Kemendikbud</div><div class="book-grade">Kelas 12</div></div>
             </div>
         </div>
     </div>

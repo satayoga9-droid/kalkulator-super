@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Game - WEB NUU V-1🦉</title>
+    <style>
+        body { background: linear-gradient(135deg, #0f172a, #1e293b); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+        .game { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; text-align: center; }
+        h1 { color: #3b82f6; }
+        .question { font-size: 4em; margin: 30px 0; }
+        input { padding: 15px; font-size: 1.5em; width: 150px; border-radius: 10px; border: none; margin: 10px; }
+        button { padding: 15px 30px; background: #3b82f6; color: white; border: none; border-radius: 10px; cursor: pointer; margin: 10px; }
+        .score { font-size: 1.5em; margin: 20px; }
+        .back { margin-bottom: 20px; }
+        .back a { color: white; text-decoration: none; padding: 10px 20px; background: #3b82f6; border-radius: 50px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="back"><a href="../../">← Kembali</a></div>
+    <div class="game">
+        <h1>🧮 Math Game</h1>
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="question" id="question">5 + 3 = ?</div>
+        <input type="number" id="answer" placeholder="Jawaban">
+        <br>
+        <button onclick="checkAnswer()">Jawab</button>
+        <button onclick="newQuestion()">Soal Baru</button>
+    </div>
+    
+    <script>
+        let score = 0, a, b, answer;
+        function newQuestion() {
+            a = Math.floor(Math.random() * 10) + 1;
+            b = Math.floor(Math.random() * 10) + 1;
+            answer = a + b;
+            document.getElementById('question').innerText = `${a} + ${b} = ?`;
+        }
+        function checkAnswer() {
+            let userAnswer = parseInt(document.getElementById('answer').value);
+            if(userAnswer === answer) {
+                score += 10;
+                document.getElementById('score').innerText = score;
+                newQuestion();
+            } else {
+                alert('❌ Salah!');
+            }
+        }
+        newQuestion();
+    </script>
+</body>
+</html>
